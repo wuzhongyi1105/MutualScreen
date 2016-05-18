@@ -55,4 +55,4 @@ All pull requests must be done on the `dev` branch.
 
 ## License ##
 
-Tranquilpeak-hexo-theme is released under the terms of the [ Mozilla Public License v2.0](https://github.com/wuzhongyi1105/MutualScreen/blob/master/LICENSE)
+MutualScreen is released under the terms of the [ Mozilla Public License v2.0](https://github.com/wuzhongyi1105/MutualScreen/blob/master/LICENSE)
