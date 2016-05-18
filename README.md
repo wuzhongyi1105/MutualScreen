@@ -9,7 +9,6 @@ A simple interactive framework between two or more than two screens.
     * [Server](#Server)
     * [Client](#Client)
 - [Demo](#demo)
-- [Showcase](#showcase)
 - [Documentation](#documentation)
     * [For users](#for-users)
     * [For developers](#for-developers)
