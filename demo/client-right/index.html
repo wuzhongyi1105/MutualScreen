@@ -1,0 +1,150 @@
+<!--
+
+
+                                         
+                                   .. .vr       
+                                 qBMBBBMBMY     
+                                8BBBBBOBMBMv    
+                              iMBMM5vOY:BMBBv        
+              .r,             OBM;   .: rBBBBBY     
+              vUL             7BB   .;7. LBMMBBM.   
+             .@Wwz.           :uvir .i:.iLMOMOBM..  
+              vv::r;             iY. ...rv,@arqiao. 
+               Li. i:             v:.::::7vOBBMBL.. 
+               ,i7: vSUi,         :M7.:.,:u08OP. .  
+                 .N2k5u1ju7,..     BMGiiL7   ,i,i.  
+                  :rLjFYjvjLY7r::.  ;v  vr... rE8q;.:,, 
+                 751jSLXPFu5uU@guohezou.,1vjY2E8@Yizero.    
+                 BB:FMu rkM8Eq0PFjF15FZ0Xu15F25uuLuu25Gi.   
+               ivSvvXL    :v58ZOGZXF2UUkFSFkU1u125uUJUUZ,   
+             :@kevensun.      ,iY20GOXSUXkSuS2F5XXkUX5SEv.  
+         .:i0BMBMBBOOBMUi;,        ,;8PkFP5NkPXkFqPEqqkZu.  
+       .rqMqBBMOMMBMBBBM .           @kexianli.S11kFSU5q5   
+     .7BBOi1L1MM8BBBOMBB..,          8kqS52XkkU1Uqkk1kUEJ   
+     .;MBZ;iiMBMBMMOBBBu ,           1OkS1F1X5kPP112F51kU   
+       .rPY  OMBMBBBMBB2 ,.          rME5SSSFk1XPqFNkSUPZ,.
+              ;;JuBML::r:.:.,,        SZPX0SXSP5kXGNP15UBr.
+                  L,    :@sanshao.      :MNZqNXqSqXk2E0PSXPE .
+              viLBX.,,v8Bj. i:r7:,     2Zkqq0XXSNN0NOXXSXOU 
+            :r2. rMBGBMGi .7Y, 1i::i   vO0PMNNSXXEqP@Secbone.
+            .i1r. .jkY,    vE. iY....  20Fq0q5X5F1S2F22uuv1M; 
+
+
+    又看源码,看你妹妹呀!
+-->
+<!--
+MutualScreen v1.0.2 (https://github.com/wuzhongyi1105/MutualScreen)
+Copyright 2015-2016 Season & Dylan.
+Licensed under MPL 2.0 (https://github.com/wuzhongyi1105/MutualScreen/blob/master/LICENSE)
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>零壹相对论</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" href="assets/style/main.css">
+<script src="assets/socket.io-client-1.4.5/socket.io.js"></script>
+<script>
+    new Image().src = 'assets/image/front.png';
+    new Image().src = 'assets/image/right1.gif';
+    new Image().src = 'assets/image/right2.gif';
+    new Image().src = 'assets/image/right3.gif';
+    new Image().src = 'assets/image/right4.gif';
+    new Image().src = 'assets/image/right5.gif';
+    //new Image().src = 'shake.js';
+    new Image().src = 'assets/audio/background.mp3';
+    function GetQueryString(name)
+    {
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if(r!=null)return  unescape(r[2]); return null;
+    }
+</script> 
+</head>
+
+<body>
+<!--<div >-->
+	<img id="main" src="assets/image/front.png">
+<!--</div>-->
+<audio autoplay="autoplay" loop="loop" preload="auto"
+            src="assets/audio/background.mp3">
+      您的浏览器不支持音效
+</audio>
+<!--<script src="shake.js"></script>-->
+
+<script>
+var myurl=GetQueryString("id");
+if(myurl !=null && myurl.toString().length>1)
+{
+   var random=GetQueryString("id");
+}
+var socket = io.connect('ws://yourIP:8124'); 
+
+socket.on('connect', function() {
+    alert('对接成功！'); 
+    socket.emit('join', random); //Boardcast your ID
+});
+
+socket.on('broadcast_join',function(username) {
+    var p = document.createElement('p'); 
+    p.innerHTML = username + ': ' + data;
+    document.getElementById('output').appendChild(p); 
+});
+
+socket.on('chat',function(username, data) {
+    if (username==random)
+      {
+        switch (data)
+          {
+          case 1:
+            document.getElementById("main").src='assets/image/right1.gif';
+            //var t=setTimeout("document.getElementById('main').src='right2.gif'",4080);
+            s++;
+            break;
+          case 2:
+            document.getElementById("main").src='assets/image/right3.gif';
+            //var t=setTimeout("document.getElementById('main').src='right4.gif'",1220);
+            s++;
+            //window.addEventListener('devicemotion',deviceMotionHandler, false); 
+            break;
+          case 3:
+            document.getElementById("main").src='assets/image/right5.gif';
+            s++;
+            //window.addEventListener('devicemotion',deviceMotionHandler, false); 
+            break;
+          default:
+            document.getElementById("main").src='err.gif';
+          }
+      }
+});
+var i=1;
+var s=0;
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', deviceMotionHandler, false);
+      function deviceMotionHandler(e) {
+      // 我们从事件“e”中获取角度值并转化成弧度值。
+      leftRightAngle = e.gamma;
+      frontBackAngle = e.beta;
+        if(leftRightAngle>45||leftRightAngle<-45){
+          if (i==s){
+            var srcurl="right" + i*2 + ".gif";
+            socket.emit('sendchat', random, i);
+            document.getElementById('main').src=srcurl;
+            i++;
+            //window.removeEventListener('devicemotion',deviceMotionHandler, false);
+          }
+        }
+    };
+}
+else{ 
+    alert('你的浏览器不支持DeviceMotionEvent'); 
+}
+</script>
+</body>
+
+
+</html>

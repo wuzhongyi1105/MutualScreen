@@ -1,0 +1,199 @@
+<!--
+
+
+                                         
+                                   .. .vr       
+                                 qBMBBBMBMY     
+                                8BBBBBOBMBMv    
+                              iMBMM5vOY:BMBBv        
+              .r,             OBM;   .: rBBBBBY     
+              vUL             7BB   .;7. LBMMBBM.   
+             .@Wwz.           :uvir .i:.iLMOMOBM..  
+              vv::r;             iY. ...rv,@arqiao. 
+               Li. i:             v:.::::7vOBBMBL.. 
+               ,i7: vSUi,         :M7.:.,:u08OP. .  
+                 .N2k5u1ju7,..     BMGiiL7   ,i,i.  
+                  :rLjFYjvjLY7r::.  ;v  vr... rE8q;.:,, 
+                 751jSLXPFu5uU@guohezou.,1vjY2E8@Yizero.    
+                 BB:FMu rkM8Eq0PFjF15FZ0Xu15F25uuLuu25Gi.   
+               ivSvvXL    :v58ZOGZXF2UUkFSFkU1u125uUJUUZ,   
+             :@kevensun.      ,iY20GOXSUXkSuS2F5XXkUX5SEv.  
+         .:i0BMBMBBOOBMUi;,        ,;8PkFP5NkPXkFqPEqqkZu.  
+       .rqMqBBMOMMBMBBBM .           @kexianli.S11kFSU5q5   
+     .7BBOi1L1MM8BBBOMBB..,          8kqS52XkkU1Uqkk1kUEJ   
+     .;MBZ;iiMBMBMMOBBBu ,           1OkS1F1X5kPP112F51kU   
+       .rPY  OMBMBBBMBB2 ,.          rME5SSSFk1XPqFNkSUPZ,.
+              ;;JuBML::r:.:.,,        SZPX0SXSP5kXGNP15UBr.
+                  L,    :@sanshao.      :MNZqNXqSqXk2E0PSXPE .
+              viLBX.,,v8Bj. i:r7:,     2Zkqq0XXSNN0NOXXSXOU 
+            :r2. rMBGBMGi .7Y, 1i::i   vO0PMNNSXXEqP@Secbone.
+            .i1r. .jkY,    vE. iY....  20Fq0q5X5F1S2F22uuv1M; 
+
+
+    又看源码,看你妹妹呀!
+-->
+<!--
+MutualScreen v1.0.2 (https://github.com/wuzhongyi1105/MutualScreen)
+Copyright 2015-2016 Season & Dylan.
+Licensed under MPL 2.0 (https://github.com/wuzhongyi1105/MutualScreen/blob/master/LICENSE)
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>零壹相对论</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="交互" />
+<link rel="stylesheet" type="text/css" href="assets/style/main.css">
+<script type="text/javascript" src="assets/image/script/qrcode.js"></script>
+<script src="assets/socket.io-client-1.4.5/socket.io.js"></script>
+<script>
+    new Image().src = 'assets/image/cover.png';
+    new Image().src = 'assets/image/front.png';
+    new Image().src = 'assets/image/left1.gif';
+    new Image().src = 'assets/image/left2.gif';
+    new Image().src = 'assets/image/left3.gif';
+    new Image().src = 'assets/image/left4.gif';
+    new Image().src = 'assets/image/left5.gif';
+    new Image().src = 'assets/image/left6.gif';
+    new Image().src = 'assets/audio/background.mp3';
+</script> 
+</head>
+
+<body>
+<!--<div>-->
+<img id="cover" src="assets/image/cover.png">
+<script>
+var timmer=setTimeout("document.getElementById('cover').style.visibility='hidden'",6000);
+//var timmer=setTimeout("document.getElementById('qrcode').style.visibility='visible'",8000);
+</script> 
+  <img id="main" src="assets/image/front.png">
+<!--</div>-->
+<audio autoplay="autoplay" loop="loop" preload="auto"
+              src="assets/audio/background.mp3">
+        您的浏览器不支持音效
+</audio>
+<div id="qrcode">
+</div>
+
+
+<!--<script src="shake.js"></script>-->
+<script>
+var socket = io.connect('ws://yourIP:8124'); 
+
+socket.on('connect', function() {
+    //alert('对接成功！'); 
+}); 
+
+function randomString(len) {
+　　len = len || 32;
+　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+　　var maxPos = $chars.length;
+　　var pwd = '';
+　　for (i = 0; i < len; i++) {
+　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+　　}
+　　return pwd;
+}
+var random= randomString(32);
+var randomurl="http://yourURL/cilent-right/index.html?id=" + random
+const canvas = qrgen.canvas({
+  data: randomurl,
+  size: 200
+});
+document.getElementById('qrcode').appendChild(canvas);
+
+var ii=-1;
+socket.on('broadcast_join',function(username) {
+    if (username==random)
+      {
+        document.getElementById('qrcode').style.visibility='hidden';
+        document.getElementById("main").src='assets/image/left1.gif';
+        //document.getElementById('mid').src='audio/1.mp3';
+        ii++;
+      }
+});
+
+var s=0;
+socket.on('chat',function(username, data) {
+    if (username==random && ii>=1)
+      {
+        switch (data)
+          {
+          case 1:
+            document.getElementById("main").src='assets/image/left3.gif';
+            //var t=setTimeout("",2180);
+            s++;
+            //window.addEventListener('devicemotion',deviceMotionHandler, false); 
+            break;
+          case 2:
+            document.getElementById("main").src='assets/image/left5.gif';
+            //document.getElementById('mid').src='audio/5.mp3';
+            //var t=setTimeout("document.getElementById('main').src='left6.gif'",7110);
+            s++;
+            //window.addEventListener('devicemotion',deviceMotionHandler, false); 
+            break;
+          default:
+            document.getElementById("main").src='err.gif';
+          }
+      }
+});
+
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', deviceMotionHandler, false);
+      function deviceMotionHandler(e) {
+      // 我们从事件“e”中获取角度值并转化成弧度值。
+      leftRightAngle = e.gamma;
+      frontBackAngle = e.beta;
+        if(leftRightAngle>50||leftRightAngle<-50){
+            //if (ii==0)
+            //{
+            //  document.getElementById("main").src='left2.gif';
+            //  window.removeEventListener('deviceorientation', deviceMotionHandler, false);
+            //  ii++;
+            //  window.removeEventListener('deviceorientation', deviceMotionHandler, false);
+            //}
+            //else
+            //{
+              if (ii==s){
+                if (ii==0)
+                  {
+                    document.getElementById('main').src='assets/image/left2.gif';
+                    //document.getElementById('mid').src='audio/2.mp3';
+                    ii++;
+                    socket.emit('sendchat', random, ii);
+                  }
+                  else if (ii==1)
+                  {
+                    document.getElementById('main').src='assets/image/left4.gif';
+                    //document.getElementById('mid').src='audio/4.mp3';
+                    ii++;
+                    socket.emit('sendchat', random, ii);
+                  }
+                  else if (ii=3)
+                  {
+                    document.getElementById('main').src='assets/image/left6.gif';
+                    //document.getElementById('mid').src='audio/6.mp3';
+                    socket.emit('sendchat', random, ii);
+                  }
+                else
+                  {
+                    document.getElementById("main").src='err.gif';
+                  }
+                //ii++;
+                //socket.emit('sendchat', random, ii);
+              }
+            }
+ //       }
+    };
+}else{ 
+    alert('你的浏览器不支持DeviceMotionEvent'); 
+}
+</script>
+</body>
+
+
+</html>

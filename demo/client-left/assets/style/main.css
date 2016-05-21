@@ -1,0 +1,86 @@
+/*
+MutualScreen v1.0.2 (https://github.com/wuzhongyi1105/MutualScreen)
+Copyright 2015-2016 Season & Dylan.
+Licensed under MPL 2.0 (https://github.com/wuzhongyi1105/MutualScreen/blob/master/LICENSE)
+*/
+@keyframes fade-in {
+0% {opacity: 0;}/*初始状态 透明度为0*/  
+20% {opacity: 0;}/*初始状态 透明度为0*/  
+40% {opacity: 0;}/*初始状态 透明度为0*/  
+60% {opacity: 0;}/*过渡状态 透明度为0*/  
+100% {opacity: 1;}/*结束状态 透明度为1*/  
+}
+@-webkit-keyframes fade-in {/*针对webkit内核*/  
+0% {opacity: 0;}/*初始状态 透明度为0*/  
+20% {opacity: 0;}/*初始状态 透明度为0*/  
+40% {opacity: 0;}/*初始状态 透明度为0*/  
+60% {opacity: 0;}/*过渡状态 透明度为0*/  
+100% {opacity: 1;}/*结束状态 透明度为1*/  
+}
+@keyframes fade-out {
+0% {opacity: 1;}
+20% {opacity: 1;}
+40% {opacity: 1;}
+70% {opacity: 0;}
+100% {opacity: 0;} 
+}
+@-webkit-keyframes fade-out {/*针对webkit内核*/  
+0% {opacity: 1;}
+20% {opacity: 1;}
+40% {opacity: 1;}
+70% {opacity: 0;}
+100% {opacity: 0;}
+}
+body
+{
+  background-image: url(leftbj.jpg);
+  background-repeat: no-repeat;
+  text-align: center;
+  background-position: center;
+  background-origin: padding-box;
+  background-size: 100% 100%;
+  margin:0 0 0 0;
+  /*overflow: hidden*/
+}
+canvas
+{
+   /*margin-top: 60%;*/
+   margin: 40% 0 80% 0;
+}
+#main
+{
+    width: 100%;
+    /*height: 100%;*/
+    position: absolute;
+    z-index:-1;
+    right: 0px;
+    vertical-align: middle;
+
+}
+#cover
+{
+    width: 100%;
+    /*height: 100%;*/
+    position: absolute;
+    z-index:3;
+    right: 0px;
+    vertical-align: middle;
+    animation: fade-out;/*动画名称*/  
+    animation-duration: 7s;/*动画持续时间*/  
+    -webkit-animation:fade-out 7s;/*针对webkit内核*/
+    /*float:right;*/
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background-color: rgba(240,240,240,0);
+}
+#qrcode
+  {
+    /*visibility:hidden;*/
+    animation-delay: 20s;
+    -webkit-animation-delay: 20s; /* Safari 和 Chrome */
+    animation: fade-in;/*动画名称*/  
+    animation-duration: 10s;/*动画持续时间*/  
+    -webkit-animation:fade-in 10s;/*针对webkit内核*/
+  }
