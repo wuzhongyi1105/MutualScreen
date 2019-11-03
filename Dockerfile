@@ -8,7 +8,8 @@ RUN apk upgrade --update \
     ca-certificates \
     git \
  && apk del build-dependencies \
- && rm -rf /tmp/* /var/cache/apk/*
+ && rm -rf /tmp/* /var/cache/apk/* \
+ && mkdir /opt/mutualscreen
 
 COPY Server.js /opt/mutualscreen
 
