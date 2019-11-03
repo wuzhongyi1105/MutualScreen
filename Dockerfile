@@ -10,13 +10,13 @@ RUN apk upgrade --update \
  && apk del build-dependencies \
  && rm -rf /tmp/* /var/cache/apk/*
 
-COPY Server.js /opt/MutualScreen
+COPY Server.js /opt/mutualscreen
 
-WORKDIR /opt/MutualScreen
+WORKDIR /opt/mutualscreen
 
 RUN npm install --save socket.io \
  && npm install -g pm2 \
 
 EXPOSE 8124
 
-CMD pm2 /opt/MutualScreen/start Server.js -i 0 && pm2 save && pm2 startup
+CMD pm2 /opt/mutualscreen/start Server.js -i 0 && pm2 save && pm2 startup
