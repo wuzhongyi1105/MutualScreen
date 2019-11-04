@@ -15,7 +15,7 @@ COPY Server.js /opt/mutualscreen
 
 WORKDIR /opt/mutualscreen
 
-RUN npm install --save socket.io \
+RUN npm install socket.io@1.4.5 \
  && npm install -g pm2
 
 EXPOSE 8124
