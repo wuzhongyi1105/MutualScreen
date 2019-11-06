@@ -20,4 +20,4 @@ RUN npm install socket.io@1.4.5 \
 
 EXPOSE 8124
 
-CMD pm2 /opt/mutualscreen/start Server.js -i 0 && pm2 save && pm2 startup
+CMD pm2 /opt/mutualscreen/start /Server.js -i 0 && pm2 save && pm2 startup
